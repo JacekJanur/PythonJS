@@ -13,3 +13,7 @@ class Connection:
          
     def getConnection(self):
         return self.__start, self.__end
+
+
+    def __str__(self):
+        return self.getStart().getName()+"->"+self.getEnd().getName()

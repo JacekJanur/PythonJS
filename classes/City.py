@@ -10,3 +10,6 @@ class City:
         return self.__name
     def getId(self):
         return self.__id
+    
+    def __str__(self):
+        return "Id: "+str(self.getId())+ ", nazwa: "+self.getName()
