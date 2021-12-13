@@ -1,10 +1,12 @@
-
-#import sys
-#sys.path.append('/iterators')
-
+from classes.City import City
+from classes.Connection import Connection
 from iterators.ITcityId import ITcityId
 
-print("test-gita")
 cityId = ITcityId()
-for x in range(10):
-    print(cityId.__next__())
+
+Krakow = City("Kraków", cityId.__next__())
+Sacz = City("Nowy Sącz", cityId.__next__())
+
+connections = []
+connections.append(Connection(Krakow, Sacz))
+
