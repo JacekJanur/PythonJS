@@ -28,25 +28,29 @@ class AbstractGraph:
             if x.getEnd() == a:
                 neighbours.append(x.getStart())
         return neighbours
-    
-    def BFS(self, skad, do):    
-        for x in self.getVertices():
-            x.visited = False
-            
-        queue = []
- 
-        queue.append(skad)
-        skad.visited = True
- 
-        while queue:
- 
-            skad = queue.pop(0)
 
-            for i in self.getNeighbours(skad):
-                if i.visited == False:
-                    queue.append(i)
-                    i.visited = True
-                    if i.getId() == do.getId():
-                        print("jest połączenie")
-                    
-            
+ 
+    def BFS(self, start, goal):
+        visited = []
+         
+        queue = [[start]]
+
+        if start == goal:
+            return 0
+
+        while queue:
+            path = queue.pop(0)
+            node = path[-1]
+
+            if node not in visited:
+                neighbours = self.getNeighbours(node)
+
+                for neighbour in neighbours:
+                    new_path = list(path)
+                    new_path.append(neighbour)
+                    queue.append(new_path)
+                    if neighbour == goal:
+                        return new_path
+                visited.append(node)
+     
+        return -1
