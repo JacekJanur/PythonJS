@@ -3,6 +3,7 @@ from classes.Connection import Connection
 from classes.AbstractGraph import AbstractGraph
 from classes.AbstractGraphMatrix import AbstractGraphMatrix
 from classes.AbstractGraphList import AbstractGraphList
+from classes.GUI import GUI
 from iterators.ITcityId import ITcityId
 
 cityId = ITcityId()
@@ -39,3 +40,11 @@ print(graf2.getMatrix())
 
 graf3 = AbstractGraphList(cities, connections)
 print(graf3.getList())
+
+
+x = GUI()
+
+x.addButton("Wyjdź", 0, 0)
+x.new_window()
+x.addLabel("Drugie okno", 0, 1, 1)
+x.run()
