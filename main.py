@@ -2,6 +2,7 @@ from classes.City import City
 from classes.Connection import Connection
 from classes.AbstractGraph import AbstractGraph
 from classes.AbstractGraphMatrix import AbstractGraphMatrix
+from classes.AbstractGraphList import AbstractGraphList
 from iterators.ITcityId import ITcityId
 
 cityId = ITcityId()
@@ -35,3 +36,6 @@ graf = AbstractGraph(cities, connections)
 
 graf2 = AbstractGraphMatrix(cities, connections)
 print(graf2.getMatrix())
+
+graf3 = AbstractGraphList(cities, connections)
+print(graf3.getList())
