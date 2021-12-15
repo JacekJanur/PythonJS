@@ -1,6 +1,7 @@
 from classes.City import City
 from classes.Connection import Connection
 from classes.AbstractGraph import AbstractGraph
+from classes.AbstractGraphMatrix import AbstractGraphMatrix
 from iterators.ITcityId import ITcityId
 
 cityId = ITcityId()
@@ -21,7 +22,7 @@ connections.append(Connection(cities[0], cities[3]))
 connections.append(Connection(cities[2], cities[3]))
 connections.append(Connection(cities[1], cities[4]))
 connections.append(Connection(cities[5], cities[2]))
-connections.append(Connection(cities[5], cities[2]))
+connections.append(Connection(cities[5], cities[3]))
 
 connections.append(Connection(cities[4], cities[5]))
 
@@ -30,4 +31,7 @@ graf = AbstractGraph(cities, connections)
 
 #graf.BFS(cities[0], cities[3])
 
-print(graf.BFS(cities[0], cities[2]))
+#print(graf.BFS(cities[0], cities[2]))
+
+graf2 = AbstractGraphMatrix(cities, connections)
+print(graf2.getMatrix())

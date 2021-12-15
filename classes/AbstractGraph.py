@@ -30,7 +30,7 @@ class AbstractGraph:
         return neighbours
 
  
-    def BFS(self, start, goal):
+    def BFS(self, start, goal): #0-ten same node, -1 - nie ma trasy
         visited = []
          
         queue = [[start]]
