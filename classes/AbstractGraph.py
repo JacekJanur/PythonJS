@@ -9,8 +9,14 @@ class AbstractGraph:
     def getVertices(self):
         return self.__vertices
     
+    def addVertices(self, c):
+        self.__vertices.append(c)
+    
     def getEdges(self):
         return self.__edges
+    
+    def addEdges(self, e):
+        self.__edges.append(e)
     
     def getGraf(self):
         return self.__graf

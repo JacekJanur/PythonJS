@@ -17,6 +17,7 @@ cities.append(City("Warszawa", cityId.__next__()))
 cities.append(City("Gdańsk", cityId.__next__()))
 cities.append(City("Wałbrzych", cityId.__next__()))
 
+
 connections = []
 connections.append(Connection(cities[0], cities[1]))
 connections.append(Connection(cities[0], cities[2]))
@@ -29,6 +30,7 @@ connections.append(Connection(cities[5], cities[3]))
 connections.append(Connection(cities[4], cities[5]))
 
 graf = AbstractGraph(cities, connections)
+
 
 
 #graf.BFS(cities[0], cities[3])
@@ -44,8 +46,12 @@ print(graf3.getList())
 
 x = GUI()
 
-x.addButton("Wyjdź", 0, 0)
 x.new_window()
 x.addLabel("Drugie okno", 0, 1, 1)
-x.addListBox(cities, 2, 2)
+x.addListBox(cities, 2, 0)
+x.addListBox(cities, 2, 1)
+
+test = lambda:x.getSelection()
+x.addButton("Dodaj połączenie", 3, 0, 0, test)
+
 x.run()
