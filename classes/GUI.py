@@ -26,7 +26,14 @@ class GUI:
         where = self.__frm if g==0 else self.__newWindow
         ttk.Button(where, text=tekst, command=self.__root.destroy).grid(column=c, row=r)
         
-        
+    
+    def addListBox(self, items, r, c):
+        list_items = StringVar(value=items)
+        listbox = Listbox(self.__root)
+        for x in items:
+            listbox.insert(0, x)
+        listbox.grid(column=c, row=r)
+            
     def new_window(self):
         self.__newWindow = Toplevel(self.__root) 
         
