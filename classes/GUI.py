@@ -7,7 +7,7 @@ Created on Wed Dec 15 09:35:05 2021
 
 from tkinter import *
 from tkinter import ttk
-
+from .Connection import Connection
 
 class GUI:
     def __init__(self):
@@ -43,9 +43,14 @@ class GUI:
         for x in range(len(selection)):
             selection[x] = selection[x][0]
         
-        print(selection)
+        return selection
             
-        
+    def addConnection(self, graf):
+        print(len(graf.getEdges()))
+        citiesSelected = self.getSelection()
+        cities = graf.getVertices()
+        graf.addEdges([Connection(citiesSelected[0], citiesSelected[1])])
+        print(len(graf.getEdges()))
         
     
     def new_window(self):

@@ -51,7 +51,8 @@ x.addLabel("Drugie okno", 0, 1, 1)
 x.addListBox(cities, 2, 0)
 x.addListBox(cities, 2, 1)
 
-test = lambda:x.getSelection()
+test = lambda:x.addConnection(graf)
 x.addButton("Dodaj połączenie", 3, 0, 0, test)
 
 x.run()
+print(len(graf.getEdges()))
