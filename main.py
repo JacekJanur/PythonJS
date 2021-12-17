@@ -54,5 +54,8 @@ x.addListBox(cities, 2, 1)
 test = lambda:x.addConnection(graf)
 x.addButton("Dodaj połączenie", 3, 0, 0, test)
 
+x.showMatrix(graf, 3)
+
+
 x.run()
 print(len(graf.getEdges()))

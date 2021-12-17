@@ -8,6 +8,7 @@ Created on Wed Dec 15 09:35:05 2021
 from tkinter import *
 from tkinter import ttk
 from .Connection import Connection
+from .AbstractGraphMatrix import AbstractGraphMatrix
 
 class GUI:
     def __init__(self):
@@ -46,13 +47,23 @@ class GUI:
         return selection
             
     def addConnection(self, graf):
-        print(len(graf.getEdges()))
         citiesSelected = self.getSelection()
         cities = graf.getVertices()
         graf.addEdges([Connection(citiesSelected[0], citiesSelected[1])])
-        print(len(graf.getEdges()))
-        
+
     
     def new_window(self):
         self.__newWindow = Toplevel(self.__root) 
+        
+    def showMatrix(self, graf, r):
+        tekst = "Legenda: \n"+str(graf.getGraf())
+        ttk.Label(self.__root, text=tekst).grid(columnspan=2, row=r)
+        
+        matrix = AbstractGraphMatrix(graf.getVertices(), graf.getEdges()).getMatrix()
+        dl_matrix = range(len(matrix))
+        ttk.Label(self.__root, text="M"+str([x+1 for x in dl_matrix])).grid(columnspan=2, row=r+1)
+        for x in dl_matrix:
+            ttk.Label(self.__root, text=str(x+1)+" "+str(matrix[x])).grid(columnspan=2, row=r+2+x)
+            
+        
         
