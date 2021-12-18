@@ -48,11 +48,14 @@ x = GUI()
 
 x.new_window()
 x.addLabel("Drugie okno", 0, 1, 1)
-x.addListBox(cities, 2, 0)
-x.addListBox(cities, 2, 1)
+x.addListBox(cities, 0, 1)
+x.addListBox(cities, 0, 2)
 
 test = lambda:x.addConnection(graf)
-x.addButton("Dodaj połączenie", 3, 0, 0, test)
+x.addButton("Dodaj połączenie", 0, 0, 0, test)
+x.addButton("Dodaj połączenie2", 0, 1, 0, test)
+
+x.addChoose(graf)
 
 x.showMatrix(graf, 3)
 

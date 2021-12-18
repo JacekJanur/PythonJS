@@ -9,6 +9,7 @@ from tkinter import *
 from tkinter import ttk
 from .Connection import Connection
 from .AbstractGraphMatrix import AbstractGraphMatrix
+from .AbstractGraphList import AbstractGraphList
 
 class GUI:
     def __init__(self):
@@ -16,6 +17,7 @@ class GUI:
         self.__frm = ttk.Frame(self.__root, padding=10)
         self.__frm.grid()
         self.__listboxes = []
+        self.__radio = IntVar(self.__root, 1)
 
     def run(self):
         self.__root.mainloop()
@@ -51,19 +53,41 @@ class GUI:
         cities = graf.getVertices()
         graf.addEdges([Connection(citiesSelected[0], citiesSelected[1])])
 
-    
+    def addChoose(self, graf):
+        r1 = Radiobutton(self.__root, text="Matrix", value=1, variable=self.__radio,
+                         command = lambda : self.showMatrix(graf, 3))
+        r2 = Radiobutton(self.__root, text="List", value=2, variable=self.__radio,
+                         command = lambda : self.showList(graf, 3))
+        r1.grid(column=0, row=2)
+        r2.grid(column=0, row=3)
+
+
+
     def new_window(self):
         self.__newWindow = Toplevel(self.__root) 
         
     def showMatrix(self, graf, r):
-        tekst = "Legenda: \n"+str(graf.getGraf())
-        ttk.Label(self.__root, text=tekst).grid(columnspan=2, row=r)
-        
+        self.__textRep = StringVar()
+        tekst = "Legenda: \n"+str(graf.getGraf())+"\n"
         matrix = AbstractGraphMatrix(graf.getVertices(), graf.getEdges()).getMatrix()
         dl_matrix = range(len(matrix))
-        ttk.Label(self.__root, text="M"+str([x+1 for x in dl_matrix])).grid(columnspan=2, row=r+1)
+        tekst+="M"+str([x+1 for x in dl_matrix])+"\n"
         for x in dl_matrix:
-            ttk.Label(self.__root, text=str(x+1)+" "+str(matrix[x])).grid(columnspan=2, row=r+2+x)
-            
+            tekst+=str(x+1)+" "+str(matrix[x])+"\n"
         
+        self.__textRep.set(tekst)
+        ttk.Label(self.__root, textvariable=self.__textRep).grid(column = 1, columnspan=2, row=r)
+        
+       
+            
+    def showList(self, graf, r):
+        tekst = ""
+        matrix = AbstractGraphList(graf.getVertices(), graf.getEdges()).getList()
+        dl_matrix = range(len(matrix))
+        for x in dl_matrix:
+            tekst+=str(x+1)+" "+str([c.getName() for c in matrix[x]])+"\n"
+        
+        self.__textRep.set(tekst)
+        ttk.Label(self.__root, textvariable=self.__textRep).grid(column = 1, columnspan=2, row=r)
+         
         
