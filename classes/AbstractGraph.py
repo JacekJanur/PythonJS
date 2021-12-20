@@ -18,6 +18,9 @@ class AbstractGraph:
     
     def addEdges(self, e):
         self.__edges.append(e)
+        
+    def delEdge(self, e):
+        self.__edges.remove(e)
     
     def getGraf(self):
         return self.__graf

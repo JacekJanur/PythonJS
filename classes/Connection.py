@@ -17,3 +17,6 @@ class Connection:
 
     def __str__(self):
         return self.getStart().getName()+"->"+self.getEnd().getName()
+    
+    def __eq__(self, e):
+        return self.getStart() == e.getStart() and self.getEnd() == e.getEnd()

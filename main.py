@@ -49,12 +49,11 @@ x.addLabel("Drugie okno", 0, 1, 1)
 x.addListBox(cities, 0, 1)
 x.addListBox(cities, 0, 2)
 
-test = lambda:x.addConnection(graf)
-x.addButton("Dodaj połączenie", 0, 0, 0, test)
+x.addButton("Dodaj połączenie", 0, 0, 0, lambda:x.adConnection(graf))
 
 
 
-x.addButton("Dodaj połączenie2", 0, 1, 0, test)
+x.addButton("Usuń połączenie2", 0, 1, 0, lambda:x.adConnection(graf,1))
 
 x.addChoose(graf)
 

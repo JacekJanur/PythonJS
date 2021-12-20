@@ -49,16 +49,20 @@ class GUI:
         
         return selection
             
-    def addConnection(self, graf):
+    def adConnection(self, graf, delete=0):
         
         citiesSelected = self.getSelection()
               
         cities = graf.getVertices()
     
-        
-        graf.addEdges(Connection(cities[citiesSelected[0]], cities[citiesSelected[1]]))
+        if delete:
+            graf.delEdge(Connection(cities[citiesSelected[0]], cities[citiesSelected[1]]))
+        else:
+            graf.addEdges(Connection(cities[citiesSelected[0]], cities[citiesSelected[1]]))
         
         self.refresh(graf)
+        
+        
 
     def addChoose(self, graf):
         r1 = Radiobutton(self.__root, text="Matrix", value=1, variable=self.__radio,
