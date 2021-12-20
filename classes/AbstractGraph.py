@@ -11,6 +11,7 @@ class AbstractGraph:
     
     def addVertices(self, c):
         self.__vertices.append(c)
+        self.__graf[c.getId()] = self.__graf[c.getName()]
     
     def getEdges(self):
         return self.__edges

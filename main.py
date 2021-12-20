@@ -29,6 +29,7 @@ connections.append(Connection(cities[5], cities[3]))
 
 connections.append(Connection(cities[4], cities[5]))
 
+
 graf = AbstractGraph(cities, connections)
 
 
@@ -38,11 +39,8 @@ graf = AbstractGraph(cities, connections)
 #print(graf.BFS(cities[0], cities[2]))
 
 graf2 = AbstractGraphMatrix(cities, connections)
-print(graf2.getMatrix())
 
 graf3 = AbstractGraphList(cities, connections)
-print(graf3.getList())
-
 
 x = GUI()
 
@@ -53,6 +51,9 @@ x.addListBox(cities, 0, 2)
 
 test = lambda:x.addConnection(graf)
 x.addButton("Dodaj połączenie", 0, 0, 0, test)
+
+
+
 x.addButton("Dodaj połączenie2", 0, 1, 0, test)
 
 x.addChoose(graf)
@@ -61,4 +62,3 @@ x.showMatrix(graf, 3)
 
 
 x.run()
-print(len(graf.getEdges()))

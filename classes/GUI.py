@@ -18,6 +18,7 @@ class GUI:
         self.__frm.grid()
         self.__listboxes = []
         self.__radio = IntVar(self.__root, 1)
+        self.__textRep = StringVar()
 
     def run(self):
         self.__root.mainloop()
@@ -49,9 +50,15 @@ class GUI:
         return selection
             
     def addConnection(self, graf):
+        
         citiesSelected = self.getSelection()
+              
         cities = graf.getVertices()
-        graf.addEdges([Connection(citiesSelected[0], citiesSelected[1])])
+    
+        
+        graf.addEdges(Connection(cities[citiesSelected[0]], cities[citiesSelected[1]]))
+        
+        self.refresh(graf)
 
     def addChoose(self, graf):
         r1 = Radiobutton(self.__root, text="Matrix", value=1, variable=self.__radio,
@@ -67,8 +74,9 @@ class GUI:
         self.__newWindow = Toplevel(self.__root) 
         
     def showMatrix(self, graf, r):
-        self.__textRep = StringVar()
+        
         tekst = "Legenda: \n"+str(graf.getGraf())+"\n"
+        
         matrix = AbstractGraphMatrix(graf.getVertices(), graf.getEdges()).getMatrix()
         dl_matrix = range(len(matrix))
         tekst+="M"+str([x+1 for x in dl_matrix])+"\n"
@@ -88,6 +96,11 @@ class GUI:
             tekst+=str(x+1)+" "+str([c.getName() for c in matrix[x]])+"\n"
         
         self.__textRep.set(tekst)
-        ttk.Label(self.__root, textvariable=self.__textRep).grid(column = 1, columnspan=2, row=r)
+        
+    def refresh(self, graf):
+        if self.__radio.get() == 1:
+            self.showMatrix(graf, 3)
+        else:
+            self.showList(graf, 3)
          
         
