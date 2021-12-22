@@ -10,6 +10,8 @@ from tkinter import ttk
 from .Connection import Connection
 from .AbstractGraphMatrix import AbstractGraphMatrix
 from .AbstractGraphList import AbstractGraphList
+from .Errors import ConnectionNotExist
+from .Errors import ConnectionExist
 
 class GUI:
     def __init__(self):
@@ -27,7 +29,7 @@ class GUI:
         where = self.__frm if g==0 else self.__newWindow
         ttk.Label(where, text=tekst).grid(column=c, row=r)
         
-    def addButton(self, tekst, c, r, g=0, lam=lambda:print(1)):
+    def addButton(self, tekst, c, r, g=0, lam=lambda:print("Clicked!")):
         where = self.__frm if g==0 else self.__newWindow
         ttk.Button(where, text=tekst, command=lam).grid(column=c, row=r)
         
@@ -50,18 +52,32 @@ class GUI:
         return selection
             
     def adConnection(self, graf, delete=0):
-        
         citiesSelected = self.getSelection()
               
         cities = graf.getVertices()
     
-        if delete:
-            graf.delEdge(Connection(cities[citiesSelected[0]], cities[citiesSelected[1]]))
-        else:
-            graf.addEdges(Connection(cities[citiesSelected[0]], cities[citiesSelected[1]]))
+        e = Connection(cities[citiesSelected[0]], cities[citiesSelected[1]])
+        exist = graf.edgeExist(e)
+        try:
+            if not exist and delete:
+                raise ConnectionNotExist
+            if delete:
+                graf.delEdge(e)
+            elif not exist:
+                graf.addEdges(e)
+            else:
+                raise ConnectionExist
         
-        self.refresh(graf)
+            self.refresh(graf)
+        except ConnectionNotExist:
+            self.showError("Połączenie nie istnieje!")
+        except ConnectionExist:
+            self.showError("Połączenie już istnieje!")
         
+        
+    def showError(self, tekst):
+        messagebox.showerror(title="Error",
+                             message=tekst)
         
 
     def addChoose(self, graf):
@@ -95,9 +111,10 @@ class GUI:
     def showList(self, graf, r):
         tekst = ""
         matrix = AbstractGraphList(graf.getVertices(), graf.getEdges()).getList()
+        cities = graf.getVertices()
         dl_matrix = range(len(matrix))
         for x in dl_matrix:
-            tekst+=str(x+1)+" "+str([c.getName() for c in matrix[x]])+"\n"
+            tekst+=cities[x].getName()+"\n"+str([c.getName() for c in matrix[x]])+"\n\n"
         
         self.__textRep.set(tekst)
         

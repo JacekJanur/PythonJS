@@ -22,6 +22,10 @@ class AbstractGraph:
     def delEdge(self, e):
         self.__edges.remove(e)
     
+    def edgeExist(self, e):
+        return (e in self.__edges)
+    
+    
     def getGraf(self):
         return self.__graf
     
