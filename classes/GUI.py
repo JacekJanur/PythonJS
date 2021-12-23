@@ -21,6 +21,7 @@ class GUI:
         self.__listboxes = []
         self.__radio = IntVar(self.__root, 1)
         self.__textRep = StringVar()
+        self.__textSearch = StringVar()
 
     def run(self):
         self.__root.mainloop()
@@ -34,11 +35,15 @@ class GUI:
         ttk.Button(where, text=tekst, command=lam).grid(column=c, row=r)
         
     
-    def addListBox(self, items, r, c):
-        listbox = Listbox(self.__root, exportselection=0)
+    def addListBox(self, items, r, c, okno=0):
+        if okno==0:
+            listbox = Listbox(self.__root, exportselection=0)
+        else:
+            listbox = Listbox(self.__newWindow, exportselection=0)
         for x in items[::-1]:
             listbox.insert(0, x)
         listbox.grid(column=c, row=r)
+        listbox.select_set(0)
         self.__listboxes.append(listbox)
             
     def getSelection(self):
@@ -124,4 +129,25 @@ class GUI:
         else:
             self.showList(graf, 3)
          
+    def addSearchLabel(self):
+        ttk.Label(self.__newWindow, textvariable=self.__textSearch).grid(
+            column = 1, columnspan=2, row=3)
+
+    def search(self, graf):
+        tekst = ""
+        self.__textSearch.set("")
+        citiesSelected = self.getSelection()
+        cities = graf.getVertices()
+        road = graf.BFS(cities[citiesSelected[2]], cities[citiesSelected[3]])
+        if road == -1:
+            self.__textSearch.set("Brak połączeń!")
+        elif road == 0:
+            self.__textSearch.set("To jest to samo miasto!")
+        else:
+            for x in range(len(road)):
+                tekst+=road[x].getName()
+                if not x == len(road)-1:
+                    tekst+="->"
+            self.__textSearch.set(tekst)
+        
         
