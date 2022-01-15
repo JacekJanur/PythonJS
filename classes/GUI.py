@@ -56,35 +56,38 @@ class GUI:
         
         return selection
             
+    #Dodaje lub usuwa zaznaczone polaczenie (zalezy od zmiennej delete)
     def adConnection(self, graf, delete=0):
         citiesSelected = self.getSelection()
               
         cities = graf.getVertices()
     
         e = Connection(cities[citiesSelected[0]], cities[citiesSelected[1]])
-        exist = graf.edgeExist(e)
-        try:
-            if not exist and delete:
-                raise ConnectionNotExist
-            if delete:
-                graf.delEdge(e)
-            elif not exist:
-                graf.addEdges(e)
-            else:
-                raise ConnectionExist
-        
-            self.refresh(graf)
-        except ConnectionNotExist:
-            self.showError("Połączenie nie istnieje!")
-        except ConnectionExist:
-            self.showError("Połączenie już istnieje!")
-        
+        if(cities[citiesSelected[0]] != cities[citiesSelected[1]]):
+            exist = graf.edgeExist(e)
+            try:
+                if not exist and delete:
+                    raise ConnectionNotExist
+                if delete:
+                    graf.delEdge(e)
+                elif not exist:
+                    graf.addEdges(e)
+                else:
+                    raise ConnectionExist
+            
+                self.refresh(graf)
+            except ConnectionNotExist:
+                self.showError("Połączenie nie istnieje!")
+            except ConnectionExist:
+                self.showError("Połączenie już istnieje!")
+        else:
+            self.showError("To jest to samo miasto!")
         
     def showError(self, tekst):
         messagebox.showerror(title="Error",
                              message=tekst)
         
-
+    #dodaje wybor reprezentacji grafu
     def addChoose(self, graf):
         r1 = Radiobutton(self.__root, text="Matrix", value=1, variable=self.__radio,
                          command = lambda : self.showMatrix(graf, 3))
@@ -123,6 +126,7 @@ class GUI:
         
         self.__textRep.set(tekst)
         
+    #odswieza graf/macierz po zmianie polaczen
     def refresh(self, graf):
         if self.__radio.get() == 1:
             self.showMatrix(graf, 3)
@@ -133,6 +137,7 @@ class GUI:
         ttk.Label(self.__newWindow, textvariable=self.__textSearch).grid(
             column = 1, columnspan=2, row=3)
 
+    #wyszukuje polaczenia i wyswietla najkrotsza droge
     def search(self, graf):
         tekst = ""
         self.__textSearch.set("")
