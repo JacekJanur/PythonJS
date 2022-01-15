@@ -7,6 +7,7 @@ Created on Wed Dec 15 09:35:05 2021
 
 from tkinter import *
 from tkinter import ttk
+from tkinter import messagebox
 from .Connection import Connection
 from .AbstractGraphMatrix import AbstractGraphMatrix
 from .AbstractGraphList import AbstractGraphList
