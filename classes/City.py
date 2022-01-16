@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 class City:
+    """Klasa bedaca reprezentacja miasta"""
     def __init__(self, name, nr):
         self.__name = name
         self.__id = nr

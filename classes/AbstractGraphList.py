@@ -7,6 +7,7 @@ Created on Wed Dec 15 09:10:49 2021
 from .AbstractGraph import AbstractGraph
 
 class AbstractGraphList(AbstractGraph):
+    """Klasa dziedziczaca po AbstractGraph, odpowiada ze reprezentacje grafu poprzez liste"""
     def __init__(self, vertices, edges):
         super().__init__(vertices, edges)
         lista = []
@@ -22,4 +23,5 @@ class AbstractGraphList(AbstractGraph):
         
         
     def getList(self):
+        """Zwraca liste polaczen grafu"""
         return self.__list

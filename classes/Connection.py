@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 class Connection:
+    """Klasa bedaca reprezentacja polaczen miedzy miastami"""
     def __init__(self, a, b):
         self.__start = a
         self.__end = b

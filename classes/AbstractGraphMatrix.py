@@ -8,6 +8,7 @@ Created on Wed Dec 15 08:07:00 2021
 from .AbstractGraph import AbstractGraph
 
 class AbstractGraphMatrix(AbstractGraph):
+    """Klasa dziedziczaca po AbstractGraph, odpowiada ze reprezentacje grafu poprzez macierz"""
     def __init__(self, vertices, edges):
         super().__init__(vertices, edges)
         matrix = []
@@ -22,4 +23,5 @@ class AbstractGraphMatrix(AbstractGraph):
         
         
     def getMatrix(self):
+        """Zwraca macierz polaczen grafu"""
         return self.__matrix
