@@ -6,6 +6,11 @@
 
 # Temat projektu
 Projekt jest programem do wyszukiwania połączeń kolejowych między miastami. Aplikacja uruchamia się w dwóch osobnych oknach, w pierwszym ustawiamy połączenia a w drugim wyszukujemy je. Program domyślnie ma 10 zdefiniowanych miast, gdzie z każdego można dojechać do dowolnego miasta (z przesiadkami). Wyszukiwanie połączeń i znajdowanie najkrótszej drogi jest realizowane za pomocą algorytmu BFS. Reprezentacja grafu połączeń jest realizowana poprzez macierz i listę. Użytkownik w dowolnym momencie może wybierać między tymi dwoma reprezentacjami.
+# Struktura plików
+## Folder (pakiet) classes
+Zawiera w sobie wszystkie klasy
+## Folder (pakiet) iterators
+Zawiera w sobie pomocnicze iteratory ( aktualnie tylko iterator id miast)
 # Klasy
 ## [AbstractGraph](https://github.com/JacekJanur/PythonJS/blob/main/classes/AbstractGraph.py)
 ### Zmienne:
@@ -127,3 +132,34 @@ Wyświetla listową reprezentacje podanego grafu na podanym miejscu
 Odświeża reprezentacje grafu przy jakiejkolwiek zmianie połączeń
 ####  search(graf)
 Wyszukuje połączenie między zaznaczonymi miastami (getSelection()) i wyświetla najkrótszą drogą między nimi, lub zwraca napis, że dane połączenie nie istnieje.
+
+## [tests](https://github.com/JacekJanur/PythonJS/blob/main/tests.py)
+Klasa zawierająca 7 metod będących testami.
+####  test1()
+Wyszukanie połączenia miedzy dwoma miastami
+####  test2()
+Wyszukanie połączenia miedzy dwoma miastami z przynajmniej dwoma przystankami
+####  test3()
+Dodanie połączenie bezpośredniego między dwoma miastami z test2. Oczekiwana informacja o połączeniu bezpośrednim
+####  test4()
+Usuniecie bezpośredniego połączenia miedzy miastami z test1. Oczekiwana informacja o przesiadce
+####  test5()
+Usuniecie wszystkich połączeń do danego miasta. Oczekiwana informacja o braku połączenia
+####  test6()
+test2 w drugiej reprezentacji grafu
+####  test7()
+test3 w drugiej reprezentacji grafu
+
+# Miejsca użycia konkretnych list konstrukcji Pythona
+## Lambdy
+- [Trzy lambdy](https://github.com/JacekJanur/PythonJS/blob/701d601419ea2f264a3d6a1fc8afe1e240252dca/main.py#L29-L36)
+## List comprehensions lub dictionary comprehensions
+- [2 comprehensions](https://github.com/JacekJanur/PythonJS/blob/701d601419ea2f264a3d6a1fc8afe1e240252dca/main.py#L14-L17)
+- [1 dictionary comprehensions](https://github.com/JacekJanur/PythonJS/blob/701d601419ea2f264a3d6a1fc8afe1e240252dca/classes/AbstractGraph.py#L10)
+## Klasy
+Istnieje podział na klasę odpowiedzialną za interfejs użytkownika i na drugą realizującą  
+funkcjonalność programu. Wszystkie atrybuty obu klas są prywatne.
+## Wyjątki
+- [Zdefiniowanie własnej klasy wyjątku](https://github.com/JacekJanur/PythonJS/blob/main/classes/Errors.py)
+- [Rzucanie wyjątku, łapanie wyjątku](https://github.com/JacekJanur/PythonJS/blob/701d601419ea2f264a3d6a1fc8afe1e240252dca/classes/GUI.py#L77-L91)
+- Własne moduły - program rozdzielony na ponad 2 pliki
